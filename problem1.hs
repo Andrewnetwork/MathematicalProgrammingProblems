@@ -25,5 +25,5 @@ sumMult strt stop mult = mult * (sumNat (fromInteger (multInRange strt stop mult
 -- lower: start of range [lower,upper]
 -- upper: end of range [lower,upper]
 -- multiples: the multiples of all elements in mls in [lower,upper]
-multiples mls lower upper = [z | z <- [lower,lower+1..upper], elem 0 (map (mod z) mls) ]
+multiples mls lower upper = [z | z <- [lower+1,lower+2..upper], elem 0 (map (mod z) mls) ]
 -- sum( multiples [3,5] 1 999 )
