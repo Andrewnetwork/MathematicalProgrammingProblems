@@ -1,3 +1,28 @@
+
+divide n d = n/d
+
+ndivide x = map (divide x) [1,2..x]
+
+filterFn x = map wholeReturn (ndivide x)
+
+wholeReturn x
+    | isInteger x = x
+    | otherwise   = 0
+
+wholeReturn' x
+    | isInteger x = Just x
+    | otherwise = Nothing 
+
+isEven x
+    | (x `mod` 2) == 0 = True
+    | otherwise        = False  
+
+-- 20: 1,  2,4,5,10   ,20
+-- 20: 2 * 2 * 5 
+
+isInteger :: Float -> Bool
+isInteger x = fromInteger (round x) == x
+
 {-
 Problem 1: Multiples of 3 and 5
 
@@ -46,3 +71,13 @@ constructPal 6 = [ l++m++r | l <- pal1, m <- pal4, r <- pal1, r == l]
 constructPal x = [ l++m++r | l <- pal1, m <- palM2, r <- pal1, r == l] 
                 where pal1 = (constructPal 1)
                       palM2 = (constructPal (x-2))
+
+-- He we build up specific solutions in order to gain intuition to the general one. 
+constructPal 1 = map show [0,1..9]
+
+constructPal 2 = [l++r| l <- pal1, r <- pal1, l == r]
+                 where pal1 = (constructPal 1)
+
+constructPal x = [ l++m++r | l <- pal1, m <- palM2, r <- pal1, r == l] 
+                 where pal1 = (constructPal 1)
+                       palM2 = (constructPal (x-2))

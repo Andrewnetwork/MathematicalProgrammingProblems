@@ -4,9 +4,10 @@ January 2018
 arith.hs
 Elementary arithmetic functions. 
 -}
-
-module Arith (intSqrt, dt, pfs, quicksort, spfs, )
+module SAHML.Arith (intSqrt, dt, pfs, quicksort, spfs)
 where
+
+import SAHML.Helpers
 
 -- Integer Square Root
 intSqrt :: (Integral a) => a -> Integer
