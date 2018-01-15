@@ -5,15 +5,20 @@ arith.hs
 Elementary arithmetic functions. 
 -}
 
+module Arith (intSqrt, dt, pfs, quicksort, spfs, )
+where
+
 -- Integer Square Root
 intSqrt :: (Integral a) => a -> Integer
 intSqrt x =  round (sqrt (fromIntegral x))
 
 -- Divisor Tuples
 dt :: Integer -> [(Integer, Integer)]
+dt 0 = [(0,1)]
 dt x = [ (quot x i,i) 
         | i <- [k,k-1..1], mod x i == 0]
         where k = intSqrt(x)
+
 
 -- Prime Factors. Can factor numbers up to the trillions easily.
 pfs :: Integer -> [Integer]
