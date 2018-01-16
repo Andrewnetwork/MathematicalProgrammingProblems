@@ -81,3 +81,23 @@ constructPal 2 = [l++r| l <- pal1, r <- pal1, l == r]
 constructPal x = [ l++m++r | l <- pal1, m <- palM2, r <- pal1, r == l] 
                  where pal1 = (constructPal 1)
                        palM2 = (constructPal (x-2))
+unique [] = []
+unique (x:xs) = [ (x,a) | a <- xs ]
+
+lso [] = []
+lso (x:xs) = [ b:r | a <- xs, b <- x, r <- lso xs,  not (elem b a) ]
+-- elem True (map (elem b) a)
+
+skip _ [] = []
+skip i ls
+    | s == [] = f
+    | otherwise = f ++ [0] ++ tail rest
+    where (f,s) = (splitAt i ls)
+          rest = skip i s
+-- skip 2 [2,3,4,5,6]
+-- skip 3 (skip 2 [2,3,4,5,6,7,8] )
+-- skip 2 [2,3..20]
+-- skip 3 (skip 2 [2,3..20] )
+-- skip 3 (tail (skip 2 [2,3..20] ) )
+-- skip 4 (tail (skip 3 (tail (skip 2 [2,3..100] ) ) ) )
+-- skip 5 (skip 4 (tail (skip 3 (tail (skip 2 [2,3..100] ) ) ) ) )
