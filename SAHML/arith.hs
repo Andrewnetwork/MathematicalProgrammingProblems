@@ -4,7 +4,7 @@ January 2018
 arith.hs
 Elementary arithmetic functions. 
 -}
-module SAHML.Arith (intSqrt, dt, pfs, quicksort, spfs)
+module SAHML.Arith (intSqrt, dt, pfs, spfs)
 where
 
 import SAHML.Helpers
@@ -31,14 +31,6 @@ pfs x
 -- Is Prime: True if x is prime, False if x is not prime. 
 isPrime :: Integer -> Bool
 isPrime x = elem 1 (head (dt x) )
-
--- Source: http://learnyouahaskell.com/recursion#hello-recursion
-quicksort :: (Ord a) => [a] -> [a]  
-quicksort [] = []  
-quicksort (x:xs) =   
-    let smallerSorted = quicksort [a | a <- xs, a <= x]  
-        biggerSorted = quicksort [a | a <- xs, a > x]  
-    in  smallerSorted ++ [x] ++ biggerSorted 
 
 -- Sorted Prime Factors of x
 spfs x = quicksort(pfs x)

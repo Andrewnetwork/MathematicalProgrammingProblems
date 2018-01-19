@@ -1,4 +1,4 @@
-module SAHML.Helpers (etle,slil,setisfy)
+module SAHML.Helpers (etle,slil,setisfy,quicksort,windows)
 where 
 
 -- Element to List element
@@ -14,3 +14,16 @@ setisfy [] = []
 setisfy (x:xs)
     | elem x xs = setisfy xs
     | otherwise = x : setisfy xs
+
+-- Source: http://learnyouahaskell.com/recursion#hello-recursion
+quicksort :: (Ord a) => [a] -> [a]  
+quicksort [] = []  
+quicksort (x:xs) =   
+    let smallerSorted = quicksort [a | a <- xs, a <= x]  
+        biggerSorted = quicksort [a | a <- xs, a > x]  
+    in  smallerSorted ++ [x] ++ biggerSorted 
+
+windows _ [] = []
+windows n (x:xs)
+    | (length xs) > (n-2) = [x:(take (n-1) xs)]++(windows n xs)
+    | otherwise = []
