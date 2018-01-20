@@ -101,3 +101,6 @@ skip i ls
 -- skip 3 (tail (skip 2 [2,3..20] ) )
 -- skip 4 (tail (skip 3 (tail (skip 2 [2,3..100] ) ) ) )
 -- skip 5 (skip 4 (tail (skip 3 (tail (skip 2 [2,3..100] ) ) ) ) )
+eSieve [] _ = []
+eSieve n s = s:(eSieve k (head k))
+                  where k = [ a | a <- n, mod a s /= 0 ] 

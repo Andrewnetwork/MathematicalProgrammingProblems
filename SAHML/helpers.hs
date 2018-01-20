@@ -1,5 +1,7 @@
-module SAHML.Helpers (etle,slil,setisfy,quicksort,windows)
+module SAHML.Helpers (etle,slil,setisfy,quicksort,windows,predPartition,ltPartition)
 where 
+
+import Data.List
 
 -- Element to List element
 etle :: a -> [a]
@@ -27,3 +29,20 @@ windows _ [] = []
 windows n (x:xs)
     | (length xs) > (n-2) = [x:(take (n-1) xs)]++(windows n xs)
     | otherwise = []
+
+-- Produces sublists wherever the predicated holds true on a list. 
+predPartition _ [] = []
+predPartition p xs 
+    | t == [] = [h]
+    | otherwise = (h++[head t]) : predPartition p (tail t) 
+    where (h,t) = break p xs
+-- predPartition (\x -> mod x 10 == 0) [1,2..100]
+
+ltPartition _ _ [] = []
+ltPartition inc s xs 
+    | t == [] = [h]
+    | otherwise = h : ltPartition inc (s+inc) (t) 
+    where (h,t) = break (\x -> x >= s) xs
+
+-- ltPartition 10 10 [1,2..100]
+-- map sum (ltPartition 10 10 [1,2..100])

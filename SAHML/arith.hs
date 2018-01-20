@@ -4,7 +4,7 @@ January 2018
 arith.hs
 Elementary arithmetic functions. 
 -}
-module SAHML.Arith (intSqrt, dt, pfs, spfs)
+module SAHML.Arith (intSqrt, dt, pfs, spfs,eSieve,isPrime)
 where
 
 import SAHML.Helpers
@@ -34,3 +34,7 @@ isPrime x = elem 1 (head (dt x) )
 
 -- Sorted Prime Factors of x
 spfs x = quicksort(pfs x)
+
+eSieve [] _ = []
+eSieve n s = s:(eSieve k (head k))
+                  where k = [ a | a <- n, mod a s /= 0 ] 
