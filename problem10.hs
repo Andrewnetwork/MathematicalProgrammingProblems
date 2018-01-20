@@ -36,11 +36,17 @@ pairDiff ls = map (\[x,y] -> y-x) (windows 2 ls)
 [907,911,919,929,937,941,947,953,967,971,977,983,991,997]]
 --}
 
-primeRanges rangeSize upperLim = ltPartition rangeSize rangeSize primes
-                                 where primes = eSieve [2,3..upperLim] 2
-
 p10Ans = sum (filter isPrime [2,3..2000000])
 -- primeRanges 10 100
 -- map sum (primeRanges 10 100)
 -- pairDiff (map sum (primeRanges 100 10000))
 
+invESieve' s upperLim 
+    | s >= intSqrt(upperLim) = []
+    | otherwise = [s+s,s+s+s..upperLim] ++ (invESieve' (s+1) upperLim )
+
+invESieve upperLim = [2,3..upperLim] \\ (invESieve' 2 upperLim)
+
+-- invESieve 100
+-- sum (invESieve 2000000)
+-- (invESieve' 2 100) (invESieve' 2 100)

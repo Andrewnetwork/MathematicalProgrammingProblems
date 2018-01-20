@@ -104,3 +104,8 @@ skip i ls
 eSieve [] _ = []
 eSieve n s = s:(eSieve k (head k))
                   where k = [ a | a <- n, mod a s /= 0 ] 
+-- (map read (words grid))::[Int]
+
+transv start end ls
+    | start >= end = []
+    | otherwise = [map (!! start) numGrid] ++ (transpose start+1 end ls)
